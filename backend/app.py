@@ -8,6 +8,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 import os
 import random
+from datetime import timedelta
+from flask import session
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///recipe.db'
@@ -16,6 +18,8 @@ app.config['SECRET_KEY'] = 'supersecretkey'
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['UPLOAD_FOLDER'] = 'uploads'
+session.permanent = True
+login_user(your_user_object, remember=True, duration=timedelta(days=365), force=True) 
 
 CORS(app, origins=['*'], supports_credentials=True)
 
