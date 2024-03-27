@@ -17,7 +17,7 @@ app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
-CORS(app, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(app, origins=['https://high-rocket-refined.on-fleek.app/'], supports_credentials=True)
 
 db = SQLAlchemy(app)
 
