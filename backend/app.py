@@ -12,10 +12,10 @@ import random
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///recipe.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'supersecretkey'
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['SECRET_KEY'] = 'suppersecretkey'
 
 CORS(app, origins=['*'], supports_credentials=True)
 
@@ -27,8 +27,7 @@ login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
-    user = User.query.get(int(user_id))
-    return user
+    return User.query.get(int(user_id))
 
 # managin models
 class User(UserMixin, db.Model):
@@ -386,4 +385,4 @@ def get_user():
     return jsonify({'username': current_user.username}), 200
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0')
+    app.run(debug=True)
